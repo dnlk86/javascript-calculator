@@ -7,3 +7,20 @@
     text-align: center;
     background-image: radial-gradient(silver, #181818);
 }
+
+#btnAC {
+    grid-area: ac;
+    background-color: red;
+}
+
+#btnEQ {
+    grid-area: eq;
+    background-color: blueviolet;
+}
+
+#btnAC,
+#btnEQ {
+    place-self: stretch;
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
+}

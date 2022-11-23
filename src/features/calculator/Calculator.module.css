@@ -15,9 +15,18 @@
 }
 
 .buttonContainer {
+    padding: 0 20px 20px 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "ac ac div mul"
+        "seven eight nine sub"
+        "four five six sum"
+        "one two three eq"
+        "zer zer dot eq";
+    gap: 10px 10px;
+    grid-auto-flow: row;
     height: calc(100% - 100px);
     background-color: transparent;
 }
