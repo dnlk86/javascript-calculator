@@ -2,5 +2,5 @@ import React from "react";
 import styles from "./Display.module.css";
 
 export default function Display(props) {
-    return <div className={styles.display}></div>;
+    return <div id="display" className={styles.display}></div>;
 }

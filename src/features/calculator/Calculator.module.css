@@ -22,7 +22,7 @@
     grid-template-areas:
         "ac ac div mul"
         "seven eight nine sub"
-        "four five six sum"
+        "four five six add"
         "one two three eq"
         "zer zer dot eq";
     gap: 10px 10px;

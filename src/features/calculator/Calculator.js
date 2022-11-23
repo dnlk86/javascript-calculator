@@ -17,29 +17,35 @@ export function Calculator() {
 
     const incrementValue = Number(incrementAmount) || 0;
 
+    const buttons = [
+        { id: "clear", gridArea: "ac", bgColor: "red", text: "AC" },
+        { id: "divide", gridArea: "div", bgColor: "grey", text: "/" },
+        { id: "multiply", gridArea: "mul", bgColor: "grey", text: "*" },
+        { id: "seven", gridArea: "seven", bgColor: "grey", text: "7" },
+        { id: "eight", gridArea: "eight", bgColor: "grey", text: "8" },
+        { id: "nine", gridArea: "nine", bgColor: "grey", text: "9" },
+        { id: "subtract", gridArea: "sub", bgColor: "grey", text: "-" },
+        { id: "four", gridArea: "four", bgColor: "grey", text: "4" },
+        { id: "five", gridArea: "five", bgColor: "grey", text: "5" },
+        { id: "six", gridArea: "six", bgColor: "grey", text: "6" },
+        { id: "add", gridArea: "add", bgColor: "grey", text: "+" },
+        { id: "one", gridArea: "one", bgColor: "grey", text: "1" },
+        { id: "two", gridArea: "two", bgColor: "grey", text: "2" },
+        { id: "three", gridArea: "three", bgColor: "grey", text: "3" },
+        { id: "zero", gridArea: "zer", bgColor: "grey", text: "0" },
+        { id: "decimal", gridArea: "dot", bgColor: "grey", text: "." },
+        { id: "equals", gridArea: "eq", bgColor: "blueviolet", text: "=" },
+    ];
+
     return (
         <div className={styles.CalculatorBody}>
             <div className={styles.displayContainer}>
                 <Display />
             </div>
             <div className={styles.buttonContainer}>
-                <div id={"btnAC"} />
-                <Button id="div" btnDetails={{ gridArea: "div" }} />
-                <Button id="mul" btnDetails={{ gridArea: "mul" }} />
-                <Button id="seven" btnDetails={{ gridArea: "seven" }} />
-                <Button id="eight" btnDetails={{ gridArea: "eight" }} />
-                <Button id="nine" btnDetails={{ gridArea: "nine" }} />
-                <Button id="sub" btnDetails={{ gridArea: "sub" }} />
-                <Button id="four" btnDetails={{ gridArea: "four" }} />
-                <Button id="five" btnDetails={{ gridArea: "five" }} />
-                <Button id="six" btnDetails={{ gridArea: "six" }} />
-                <Button id="sum" btnDetails={{ gridArea: "sum" }} />
-                <Button id="one" btnDetails={{ gridArea: "one" }} />
-                <Button id="two" btnDetails={{ gridArea: "two" }} />
-                <Button id="three" btnDetails={{ gridArea: "three" }} />
-                <Button id="zer" btnDetails={{ gridArea: "zer" }} />
-                <Button id="dot" btnDetails={{ gridArea: "dot" }} />
-                <div id="btnEQ" />
+                {buttons.map((btn) => (
+                    <Button btnDetails={btn} />
+                ))}
             </div>
         </div>
     );
