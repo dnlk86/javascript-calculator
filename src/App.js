@@ -1,11 +1,11 @@
 import React from "react";
-import { Counter } from "./features/calculator/Counter";
+import { Calculator } from "./features/calculator/Calculator";
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
-            <Counter />
+            <Calculator />
         </div>
     );
 }

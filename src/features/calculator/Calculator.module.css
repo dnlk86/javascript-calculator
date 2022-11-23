@@ -1,0 +1,23 @@
+.CalculatorBody {
+    width: 350px;
+    height: 500px;
+    background-color: #404040;
+    border: 3px solid orangered;
+    border-radius: 15px;
+    box-shadow: 20px 20px 20px #181818, inset 5px 5px 7px grey;
+}
+
+.displayContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.buttonContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    height: calc(100% - 100px);
+    background-color: transparent;
+}
