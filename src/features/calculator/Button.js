@@ -9,6 +9,7 @@ import {
     selectCurrentExpression,
 } from "./calculatorSlice";
 import styles from "./Button.module.css";
+import { typeOf } from "mathjs";
 
 export default function Button(props) {
     const dispatch = useDispatch();
@@ -25,9 +26,9 @@ export default function Button(props) {
             case "-":
             case "*":
             case "/":
-                if (lastEval !== "") {
-                    if (!/[\/\+\-\*]/.test(lastEval)) {
-                        dispatch(addToExpression(" " + text));
+                if (lastEval.length !== 0) {
+                    if (typeOf(lastEval[lastEval.length - 1]) === "number") {
+                        dispatch(addToExpression(text));
                     } else {
                         dispatch(replaceOperator(text));
                     }

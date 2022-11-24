@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { evaluate as ev } from "mathjs";
 
 const initialState = {
-    lastEvaluated: "last evaluated",
-    currentExpression: "current expression",
+    lastEvaluated: [0],
+    currentExpression: [0],
 };
 
 export const calculatorSlice = createSlice({
@@ -11,23 +11,21 @@ export const calculatorSlice = createSlice({
     initialState,
     reducers: {
         clear: (state) => {
-            state.lastEvaluated = "";
-            state.currentExpression = "";
+            state.lastEvaluated = [0];
+            state.currentExpression = [0];
         },
         evaluate: (state) => {
             state.lastEvaluated = ev(
-                state.lastEvaluated + state.currentExpression
+                state.lastEvaluated.concat(state.currentExpression)
             );
-            state.lastEvaluated = state.currentExpression = "";
+            state.currentExpression = [];
         },
         addToExpression: (state, action) => {
-            state.lastEvaluated +=
-                action.payload + " " + state.currentExpression;
-            state.currentExpression = "";
+            state.lastEvaluated.push(action.payload);
+            state.currentExpression = [];
         },
         replaceOperator: (state, action) => {
-            state.lastEvaluated =
-                state.lastEvaluated.slice(0, state.lastEvaluated.length - 1) +
+            state.lastEvaluated[state.lastEvaluated.length - 1] =
                 action.payload;
         },
     },
