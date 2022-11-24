@@ -8,3 +8,8 @@
     justify-content: center;
     align-items: center;
 }
+
+.button:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
