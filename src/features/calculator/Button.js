@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     clear,
-    evaluate,
-    addToExpression,
+    addValue,
+    addOperator,
     replaceOperator,
+    evaluate,
     selectLastEvaluated,
-    selectCurrentExpression,
+    selectCurrentValue,
 } from "./calculatorSlice";
 import styles from "./Button.module.css";
 import { typeOf } from "mathjs";
@@ -15,7 +16,7 @@ export default function Button(props) {
     const dispatch = useDispatch();
 
     const lastEval = useSelector(selectLastEvaluated);
-    const currentExp = useSelector(selectCurrentExpression);
+    const value = useSelector(selectCurrentValue);
 
     const handleClick = (text) => {
         switch (text) {
@@ -26,15 +27,23 @@ export default function Button(props) {
             case "-":
             case "*":
             case "/":
-                if (lastEval.length !== 0) {
-                    if (typeOf(lastEval[lastEval.length - 1]) === "number") {
-                        dispatch(addToExpression(text));
-                    } else {
-                        dispatch(replaceOperator(text));
-                    }
+                if (
+                    /[-\+\*\/]/.test(lastEval[lastEval.length - 2]) &&
+                    value === ""
+                ) {
+                    dispatch(replaceOperator(text));
+                } else {
+                    dispatch(addOperator(text));
                 }
+                break;
+            case "=":
+                console.log("evaluating...");
+                break;
+            case ".":
+                console.log("adding a decimal...");
+                break;
             default:
-                console.log(text);
+                dispatch(addValue(text));
                 break;
         }
     };
