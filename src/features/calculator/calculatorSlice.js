@@ -28,7 +28,14 @@ export const calculatorSlice = createSlice({
             state.lastEvaluated[state.lastEvaluated.length - 2] =
                 action.payload;
         },
-        addDecimal: (state, action) => {},
+        addDecimal: (state) => {
+            if (state.value === "") {
+                state.value += "0.";
+            } else {
+                state.value += ".";
+            }
+            state.lastEvaluated[state.lastEvaluated.length - 1] = state.value;
+        },
         evaluate: (state) => {
             state.lastEvaluated = [math.evaluate(state.lastEvaluated.join(""))];
             state.value = "";
@@ -36,8 +43,14 @@ export const calculatorSlice = createSlice({
     },
 });
 
-export const { clear, addValue, addOperator, replaceOperator, evaluate } =
-    calculatorSlice.actions;
+export const {
+    clear,
+    addValue,
+    addOperator,
+    replaceOperator,
+    addDecimal,
+    evaluate,
+} = calculatorSlice.actions;
 
 export const selectLastEvaluated = (state) => state.calculator.lastEvaluated;
 export const selectCurrentValue = (state) => state.calculator.value;

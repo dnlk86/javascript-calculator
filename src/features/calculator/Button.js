@@ -5,6 +5,7 @@ import {
     addValue,
     addOperator,
     replaceOperator,
+    addDecimal,
     evaluate,
     selectLastEvaluated,
     selectCurrentValue,
@@ -40,7 +41,7 @@ export default function Button(props) {
                 dispatch(evaluate());
                 break;
             case ".":
-                console.log("adding a decimal...");
+                dispatch(addDecimal());
                 break;
             default:
                 dispatch(addValue(text));
