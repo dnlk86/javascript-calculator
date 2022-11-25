@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { evaluate as ev } from "mathjs";
 
 const initialState = {
     lastEvaluated: [""],
     value: "",
 };
+
+const math = require("mathjs");
 
 export const calculatorSlice = createSlice({
     name: "calculator",
@@ -27,10 +28,11 @@ export const calculatorSlice = createSlice({
             state.lastEvaluated[state.lastEvaluated.length - 2] =
                 action.payload;
         },
-        // evaluate: (state) => {
-        //     state.lastEvaluated = ev(state.lastEvaluated.concat(state.value));
-        //     state.value = 0;
-        // },
+        addDecimal: (state, action) => {},
+        evaluate: (state) => {
+            state.lastEvaluated = [math.evaluate(state.lastEvaluated.join(""))];
+            state.value = "";
+        },
     },
 });
 

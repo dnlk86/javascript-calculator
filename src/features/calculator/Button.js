@@ -37,7 +37,7 @@ export default function Button(props) {
                 }
                 break;
             case "=":
-                console.log("evaluating...");
+                dispatch(evaluate());
                 break;
             case ".":
                 console.log("adding a decimal...");
