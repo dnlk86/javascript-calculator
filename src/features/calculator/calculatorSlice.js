@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    lastEvaluated: [""],
-    value: "",
+    lastEvaluated: ["0"],
+    value: "0",
 };
 
 const math = require("mathjs");
@@ -12,11 +12,15 @@ export const calculatorSlice = createSlice({
     initialState,
     reducers: {
         clear: (state) => {
-            state.lastEvaluated = [""];
-            state.value = "";
+            state.lastEvaluated = ["0"];
+            state.value = "0";
         },
         addValue: (state, action) => {
-            state.value += action.payload;
+            if (state.value === "0") {
+                state.value = action.payload;
+            } else {
+                state.value += action.payload;
+            }
             state.lastEvaluated[state.lastEvaluated.length - 1] = state.value;
         },
         addOperator: (state, action) => {
@@ -29,16 +33,23 @@ export const calculatorSlice = createSlice({
                 action.payload;
         },
         addDecimal: (state) => {
-            if (state.value === "") {
-                state.value += "0.";
-            } else {
-                state.value += ".";
+            if (
+                !/[\.]/.test(
+                    state.lastEvaluated[state.lastEvaluated.length - 1]
+                )
+            ) {
+                if (state.value === "") {
+                    state.value += "0.";
+                } else {
+                    state.value += ".";
+                }
+                state.lastEvaluated[state.lastEvaluated.length - 1] =
+                    state.value;
             }
-            state.lastEvaluated[state.lastEvaluated.length - 1] = state.value;
         },
         evaluate: (state) => {
-            state.lastEvaluated = [math.evaluate(state.lastEvaluated.join(""))];
-            state.value = "";
+            state.value = String(math.evaluate(state.lastEvaluated.join("")));
+            state.lastEvaluated = [state.value];
         },
     },
 });

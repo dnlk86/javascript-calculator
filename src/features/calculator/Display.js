@@ -5,12 +5,12 @@ import { selectCurrentValue, selectLastEvaluated } from "./calculatorSlice";
 
 export default function Display() {
     const lastEval = useSelector(selectLastEvaluated);
-    const currentExp = useSelector(selectCurrentValue);
+    const value = useSelector(selectCurrentValue);
 
     return (
-        <div id="display" className={styles.display}>
-            <p className={styles.lastEvaluated}>{lastEval}</p>
-            <p className={styles.value}>{currentExp}</p>
+        <div className={styles.display}>
+            <div>{lastEval}</div>
+            <div id="display">{value}</div>
         </div>
     );
 }

@@ -11,7 +11,6 @@ import {
     selectCurrentValue,
 } from "./calculatorSlice";
 import styles from "./Button.module.css";
-import { typeOf } from "mathjs";
 
 export default function Button(props) {
     const dispatch = useDispatch();
