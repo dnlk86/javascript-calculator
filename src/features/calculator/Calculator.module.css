@@ -1,10 +1,11 @@
 .CalculatorBody {
     width: 350px;
     height: 500px;
-    background-color: #404040;
-    border: 3px solid orangered;
+    background-color: var(--calculator-color);
+    border: 3px solid var(--calculator-border);
     border-radius: 15px;
-    box-shadow: 20px 20px 20px #181818, inset 5px 5px 7px grey;
+    box-shadow: 20px 20px 20px var(--calculator-shadow),
+        inset 5px 5px 7px var(--buttons-color);
 }
 
 .displayContainer {

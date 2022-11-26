@@ -10,7 +10,15 @@ export default function Display() {
     return (
         <div className={styles.display}>
             <div>{lastEval}</div>
-            <div id="display">{value}</div>
+            <div
+                id="display"
+                style={{
+                    fontSize: "1.3rem",
+                    color: "var(--calculator-border)",
+                }}
+            >
+                {value}
+            </div>
         </div>
     );
 }
