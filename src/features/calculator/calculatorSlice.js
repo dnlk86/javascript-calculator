@@ -29,8 +29,16 @@ export const calculatorSlice = createSlice({
             state.value = "";
         },
         replaceOperator: (state, action) => {
-            state.lastEvaluated[state.lastEvaluated.length - 2] =
-                action.payload;
+            while (
+                /(^\s*$|[-\+\*\/])/.test(
+                    state.lastEvaluated[state.lastEvaluated.length - 1]
+                )
+            ) {
+                state.lastEvaluated.pop();
+            }
+            state.lastEvaluated.push(action.payload);
+            state.lastEvaluated.push("");
+            state.value = "";
         },
         addDecimal: (state) => {
             if (

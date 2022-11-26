@@ -31,7 +31,11 @@ export default function Button(props) {
                     /[-\+\*\/]/.test(lastEval[lastEval.length - 2]) &&
                     value === ""
                 ) {
-                    dispatch(replaceOperator(text));
+                    if (text === "-") {
+                        dispatch(addOperator(text));
+                    } else {
+                        dispatch(replaceOperator(text));
+                    }
                 } else {
                     dispatch(addOperator(text));
                 }
